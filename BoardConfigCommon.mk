@@ -83,6 +83,9 @@ TARGET_LDPRELOAD += libaudioextras.so:libxlog.so
 # System Properties
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
 
+# Vold
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
+
 # Wi-Fi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_HOSTAPD_DRIVER := NL80211
