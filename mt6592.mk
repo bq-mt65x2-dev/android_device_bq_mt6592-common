@@ -70,6 +70,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcorkscrew
 
+# FM Radio
+PRODUCT_PACKAGES += \
+    FMRadio
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/gps/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml
