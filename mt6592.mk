@@ -72,7 +72,8 @@ PRODUCT_PACKAGES += \
 
 # FM Radio
 PRODUCT_PACKAGES += \
-    FMRadio
+    FMRadio \
+    libfmjni
 
 # GPS
 PRODUCT_COPY_FILES += \
