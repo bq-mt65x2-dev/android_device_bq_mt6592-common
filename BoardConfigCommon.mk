@@ -43,6 +43,7 @@ BOARD_CONNECTIVITY_MODULE := conn_soc
 # Display
 BOARD_EGL_CFG := $(COMMON_PATH)/configs/graphics/egl.cfg
 BOARD_EGL_NEEDS_HANDLE_VALUE := true
+BOARD_EGL_NEEDS_FNW := true
 USE_OPENGL_RENDERER := true
 
 # MTK Header
