@@ -76,6 +76,9 @@ PRODUCT_PACKAGES += \
     libfmjni
 
 # GPS
+PRODUCT_PACKAGES += \
+    libcurl
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/gps/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml
 
