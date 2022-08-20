@@ -37,6 +37,7 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.a2dp.default \
     audio.usb.default \
+    audio_policy.stub \
     libaudio-resampler \
     libaudioextras \
     tinymix
