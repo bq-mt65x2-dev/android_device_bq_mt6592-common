@@ -46,5 +46,9 @@ TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.mt6592
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 
+# Shims
+TARGET_LDPRELOAD += libaudioextras.so:libxlog.so
+
+
 # System Properties
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
