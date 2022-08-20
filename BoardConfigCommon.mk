@@ -68,6 +68,10 @@ BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/mkbootimg.mk
 # MTK Flags
 BOARD_USES_MTK_HARDWARE := true
 
+# Offline Charging
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/BOOT/BOOT/boot/boot_mode
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+
 # OTA
 BLOCK_BASED_OTA := true
 
