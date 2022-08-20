@@ -54,6 +54,11 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
     $(COMMON_PATH)/configs/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger \
+    charger_res_images
+
 # Corkscrew
 PRODUCT_PACKAGES += \
     libcorkscrew
