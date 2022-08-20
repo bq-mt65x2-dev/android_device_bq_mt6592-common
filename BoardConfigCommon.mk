@@ -41,6 +41,7 @@ BOARD_CONNECTIVITY_VENDOR := MediaTek
 BOARD_CONNECTIVITY_MODULE := conn_soc
 
 # Display
+BOARD_EGL_CFG := $(COMMON_PATH)/configs/graphics/egl.cfg
 USE_OPENGL_RENDERER := true
 
 # MTK Header
