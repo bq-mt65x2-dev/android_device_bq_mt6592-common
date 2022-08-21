@@ -178,7 +178,8 @@ PRODUCT_PACKAGES += \
 
 # Shim libraries
 PRODUCT_PACKAGES += \
-    libshim_utils
+    libshim_utils \
+    libshim_stagefright
 
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise
