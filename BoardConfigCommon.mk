@@ -87,7 +87,8 @@ BOARD_PROVIDES_RILD := true
 TARGET_LDPRELOAD += libaudioextras.so:libxlog.so
 LINKER_FORCED_SHIM_LIBS := \
     /system/lib/libutils.so|libshim_utils.so \
-    /system/lib/libstagefright.so|libshim_stagefright.so
+    /system/lib/libstagefright.so|libshim_stagefright.so \
+    /system/lib/libgui.so|libshim_gui.so
 
 # System Properties
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
