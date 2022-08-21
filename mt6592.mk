@@ -176,6 +176,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libxlog
 
+# Shim libraries
+PRODUCT_PACKAGES += \
+    libshim_utils
+
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise
 
