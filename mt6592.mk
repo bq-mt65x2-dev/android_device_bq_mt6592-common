@@ -181,6 +181,7 @@ PRODUCT_PACKAGES += \
     libshim_utils \
     libshim_stagefright \
     libshim_gui \
+    libshim_ui \
     libshim_icuuc \
     libshim_vtmal
 
