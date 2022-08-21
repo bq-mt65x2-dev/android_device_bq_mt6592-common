@@ -105,12 +105,12 @@
 /dev/usb_accessory        0660   root       usb
 /dev/tun                  0660   system     vpn
 
-/dev/ccci*                0660   ccci       ccci
-/dev/ttyC*                0660   ccci       ccci
-/sys/kernel/ccci          modem_info   0644   ccci       ccci
-/sys/kernel/ccci          md1_postfix  0644   ccci       ccci
-/sys/kernel/ccci          md2_postfix  0644   ccci       ccci
-/dev/eemcs*               0660   ccci       ccci
+/dev/ccci*                0660   radio       radio
+/dev/ttyC*                0660   radio       radio
+/sys/kernel/ccci          modem_info   0644   radio       radio
+/sys/kernel/ccci          md1_postfix  0644   radio       radio
+/sys/kernel/ccci          md2_postfix  0644   radio       radio
+/dev/eemcs*               0660   radio       radio
 
 # SGX device node
 /dev/pvrsrvkm             0666   root       root
