@@ -181,7 +181,8 @@ PRODUCT_PACKAGES += \
     libshim_utils \
     libshim_stagefright \
     libshim_gui \
-    libshim_icuuc
+    libshim_icuuc \
+    libshim_vtmal
 
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise

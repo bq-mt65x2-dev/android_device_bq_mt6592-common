@@ -23,3 +23,8 @@ LOCAL_SRC_FILES := libshim_icuuc.cpp
 LOCAL_SHARED_LIBRARIES := libicuuc libicui18n
 LOCAL_MODULE := libshim_icuuc
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_vtmal.cpp
+LOCAL_MODULE := libshim_vtmal
+include $(BUILD_SHARED_LIBRARY)
