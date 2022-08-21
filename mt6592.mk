@@ -183,7 +183,8 @@ PRODUCT_PACKAGES += \
     libshim_gui \
     libshim_ui \
     libshim_icuuc \
-    libshim_vtmal
+    libshim_vtmal \
+    libshim_skia
 
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise

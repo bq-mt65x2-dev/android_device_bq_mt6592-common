@@ -91,7 +91,8 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/lib/libgui.so|libshim_gui.so \
     /system/lib/libui.so|libshim_ui.so \
     /system/lib/libicuuc.so|libshim_icuuc.so \
-    /system/lib/libvtmal.so|libshim_vtmal.so
+    /system/lib/libvtmal.so|libshim_vtmal.so \
+    /system/lib/libskia.so|libshim_skia.so
 
 # System Properties
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop

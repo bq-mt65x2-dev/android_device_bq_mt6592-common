@@ -34,3 +34,9 @@ LOCAL_SRC_FILES := libshim_ui.cpp
 LOCAL_SHARED_LIBRARIES := libui libgui
 LOCAL_MODULE := libshim_ui
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_skia.cpp
+LOCAL_SHARED_LIBRARIES := libskia libandroid_runtime
+LOCAL_MODULE := libshim_skia
+include $(BUILD_SHARED_LIBRARY)
