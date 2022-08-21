@@ -269,6 +269,7 @@ bin/qmc5983d
 bin/s62xd
 bin/st480d
 lib/libhwm.so
+lib/hw/sensors.default.so:lib/hw/sensors.mt6592.so
 etc/getsystemtype.sh
 
 # FM Radio
@@ -316,6 +317,7 @@ lib/libvtmal.so
 lib/libvt_custom.so
 
 # GPS
+lib/hw/gps.default.so:lib/hw/gps.mt6592.so
 bin/mtk_agpsd
 lib/libmnl.so
 xbin/mnld
