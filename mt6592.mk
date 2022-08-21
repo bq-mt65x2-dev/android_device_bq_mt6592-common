@@ -180,7 +180,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libshim_utils \
     libshim_stagefright \
-    libshim_gui
+    libshim_gui \
+    libshim_icuuc
 
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise
