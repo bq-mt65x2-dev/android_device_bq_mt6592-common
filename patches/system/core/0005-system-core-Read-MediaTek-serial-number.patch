@@ -1,0 +1,82 @@
+From 8ba337b551ac02bbe101589dfe2d65337c06d54a Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 16:59:42 +0200
+Subject: [PATCH] system: core: Read MediaTek serial number
+
+Change-Id: I2b219d6e2c08ec93543e61d13c43af098468e972
+---
+ init/Android.mk |  4 ++++
+ init/init.cpp   | 35 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+
+diff --git a/init/Android.mk b/init/Android.mk
+index 0f5fe1c..2a63bac 100644
+--- a/init/Android.mk
++++ b/init/Android.mk
+@@ -107,6 +107,10 @@ ifneq ($(TARGET_INIT_UMOUNT_AND_FSCK_IS_UNSAFE),)
+ LOCAL_CFLAGS += -DUMOUNT_AND_FSCK_IS_UNSAFE
+ endif
+ 
++ifeq ($(BOARD_USES_MTK_HARDWARE),true)
++LOCAL_CFLAGS += -MTK_HARDWARE
++endif
++
+ LOCAL_MODULE:= init
+ LOCAL_C_INCLUDES += \
+     system/extras/ext4_utils \
+diff --git a/init/init.cpp b/init/init.cpp
+index 7b2a6a1..51a609f 100755
+--- a/init/init.cpp
++++ b/init/init.cpp
+@@ -323,6 +323,37 @@ static int console_init_action(const std::vector<std::string>& args)
+     return 0;
+ }
+ 
++#ifdef MTK_HARDWARE
++static int read_serialno()
++{
++    int fd;
++    char serialno[32];
++    size_t s;
++
++    fd = open("/sys/sys_info/serial_number", O_RDWR);
++    if (fd < 0) {
++        NOTICE("fail to open: %s\n", "/sys/sys_info/serial_number");
++        return 0;
++    }
++    s = read(fd, serialno, sizeof(char)*32);
++
++    serialno[s-1] = '\0';
++
++    close(fd);
++
++    if (s <= 0) {
++	    NOTICE("could not read serial number sys file\n");
++	    return 0;
++	}
++
++    NOTICE("serial number=%s\n",serialno);
++
++    property_set("ro.boot.serialno", serialno);
++
++    return 1;
++}
++#endif
++
+ static void import_kernel_nv(const std::string& key, const std::string& value, bool for_emulator) {
+     if (key.empty()) return;
+ 
+@@ -417,6 +448,10 @@ static void process_kernel_cmdline() {
+     // as properties.
+     import_kernel_cmdline(false, import_kernel_nv);
+     if (qemu[0]) import_kernel_cmdline(true, import_kernel_nv);
++
++#ifdef MTK_HARDWARE
++    read_serialno();
++#endif
+ }
+ 
+ static int property_enable_triggers_action(const std::vector<std::string>& args)
+-- 
+2.30.2
+

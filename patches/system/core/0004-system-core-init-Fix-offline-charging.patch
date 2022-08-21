@@ -1,0 +1,28 @@
+From 8a786366dd9d12f75c6c5b5616373dc38c601fd5 Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 16:54:54 +0200
+Subject: [PATCH] system: core: init: Fix offline charging
+
+ * MTK uses "8" as boot_mode for Offline Charging
+
+Change-Id: I7203d0fd2d8de7c3ad5ee4d82b18d8d527563533
+---
+ init/init.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/init/init.cpp b/init/init.cpp
+index 7a37059..7b2a6a1 100755
+--- a/init/init.cpp
++++ b/init/init.cpp
+@@ -553,7 +553,7 @@ static int charging_mode_booting(void) {
+     }
+ 
+     close(f);
+-    return ('1' == cmb);
++    return ('8' == cmb);
+ #endif
+ }
+ 
+-- 
+2.30.2
+

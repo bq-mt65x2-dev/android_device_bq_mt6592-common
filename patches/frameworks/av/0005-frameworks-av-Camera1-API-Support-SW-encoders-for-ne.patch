@@ -1,0 +1,63 @@
+From 0bff3d21212654662d7dbf5d8a49aac732cdda28 Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 15:40:44 +0200
+Subject: [PATCH] frameworks: av: Camera1 API: Support SW encoders for new
+ camera HALs
+
+Change-Id: I92168fd3da83c1be160b31711f586ba45007aa0a
+---
+ include/media/stagefright/CameraSource.h            |  2 +-
+ media/libmediaplayerservice/StagefrightRecorder.cpp |  2 +-
+ media/libstagefright/CameraSource.cpp               | 10 ----------
+ 3 files changed, 2 insertions(+), 12 deletions(-)
+
+diff --git a/include/media/stagefright/CameraSource.h b/include/media/stagefright/CameraSource.h
+index c2e75a6..f39688f 100644
+--- a/include/media/stagefright/CameraSource.h
++++ b/include/media/stagefright/CameraSource.h
+@@ -89,7 +89,7 @@ public:
+                                           Size videoSize,
+                                           int32_t frameRate,
+                                           const sp<IGraphicBufferProducer>& surface,
+-                                          bool storeMetaDataInVideoBuffers = true);
++                                          bool storeMetaDataInVideoBuffers = false);
+ 
+     virtual ~CameraSource();
+ 
+diff --git a/media/libmediaplayerservice/StagefrightRecorder.cpp b/media/libmediaplayerservice/StagefrightRecorder.cpp
+index 1352677..9ca3b84 100644
+--- a/media/libmediaplayerservice/StagefrightRecorder.cpp
++++ b/media/libmediaplayerservice/StagefrightRecorder.cpp
+@@ -1499,7 +1499,7 @@ status_t StagefrightRecorder::setupCameraSource(
+         *cameraSource = AVFactory::get()->CreateCameraSourceFromCamera(
+                 mCamera, mCameraProxy, mCameraId, mClientName, mClientUid, mClientPid,
+                 videoSize, mFrameRate,
+-                mPreviewSurface);
++                mPreviewSurface, false); // [*] Decker
+     }
+     AVUtils::get()->cacheCaptureBuffers(mCamera, mVideoEncoder);
+     mCamera.clear();
+diff --git a/media/libstagefright/CameraSource.cpp b/media/libstagefright/CameraSource.cpp
+index e49e73d..8f542bf 100644
+--- a/media/libstagefright/CameraSource.cpp
++++ b/media/libstagefright/CameraSource.cpp
+@@ -767,16 +767,6 @@ status_t CameraSource::startCameraRecording() {
+             }
+         }
+ 
+-        err = mCamera->sendCommand(
+-            CAMERA_CMD_SET_VIDEO_FORMAT, mEncoderFormat, mEncoderDataSpace);
+-
+-        // This could happen for CameraHAL1 clients; thus the failure is
+-        // not a fatal error
+-        if (err != OK) {
+-            ALOGW("Failed to set video encoder format/dataspace to %d, %d due to %d",
+-                    mEncoderFormat, mEncoderDataSpace, err);
+-        }
+-
+         // Create memory heap to store buffers as VideoNativeMetadata.
+         createVideoBufferMemoryHeap(sizeof(VideoNativeHandleMetadata), kDefaultVideoBufferCount);
+     }
+-- 
+2.30.2
+

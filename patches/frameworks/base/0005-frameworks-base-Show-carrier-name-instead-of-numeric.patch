@@ -1,0 +1,57 @@
+From 8db4ce4c7a753135c514039a6e0303a70af42e21 Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 16:24:29 +0200
+Subject: [PATCH] frameworks: base: Show carrier name instead of numeric
+ operator
+
+Change-Id: I6f58c0680bbd1a676a6cf4a5194365e529644446
+---
+ .../statusbar/policy/MobileSignalController.java | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/policy/MobileSignalController.java b/packages/SystemUI/src/com/android/systemui/statusbar/policy/MobileSignalController.java
+index 866c5aef..e2690e89 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/policy/MobileSignalController.java
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/policy/MobileSignalController.java
+@@ -92,6 +92,11 @@ public class MobileSignalController extends SignalController<
+ 
+         String networkName = info.getCarrierName() != null ? info.getCarrierName().toString()
+                 : mNetworkNameDefault;
++	if (isNumeric(networkName)) {
++            String displayName = info.getDisplayName() != null? info.getDisplayName().toString()
++                : mNetworkNameDefault;
++            networkName = displayName;
++        }
+         mLastState.networkName = mCurrentState.networkName = networkName;
+         mLastState.networkNameData = mCurrentState.networkNameData = networkName;
+         mLastState.enabled = mCurrentState.enabled = hasMobileData;
+@@ -100,6 +105,13 @@ public class MobileSignalController extends SignalController<
+         updateDataSim();
+     }
+ 
++    private boolean isNumeric(String str) {
++        for (char c : str.toCharArray()) {
++            if (!Character.isDigit(c)) return false;
++        }
++        return true;
++    }
++
+     public void setConfiguration(Config config) {
+         mConfig = config;
+         mapIconSets();
+@@ -360,10 +372,10 @@ public class MobileSignalController extends SignalController<
+         StringBuilder str = new StringBuilder();
+         StringBuilder strData = new StringBuilder();
+         if (showPlmn && plmn != null) {
+-            str.append(plmn);
++            if (!isNumeric(plmn)) str.append(plmn);
+             strData.append(plmn);
+         }
+-        if (showSpn && spn != null) {
++        if (spn != null) {
+             if (str.length() != 0) {
+                 str.append(mNetworkNameSeparator);
+             }
+-- 
+2.30.2
+

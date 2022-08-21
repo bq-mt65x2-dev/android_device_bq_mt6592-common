@@ -1,0 +1,34 @@
+From dc562037733b96a40d5eefd71905146f92243777 Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 16:45:36 +0200
+Subject: [PATCH] system: core: init: Re-allow services without SELinux
+ contexts defined
+
+Change-Id: I34325e0534191e7c20e44bc3f399ae71f1559ee5
+---
+ init/service.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/init/service.cpp b/init/service.cpp
+index a5334f4..560c122 100644
+--- a/init/service.cpp
++++ b/init/service.cpp
+@@ -371,6 +371,7 @@ bool Service::Start() {
+             scon = ret_scon;
+             free(ret_scon);
+         }
++#if 0
+         if (rc == 0 && scon == mycon) {
+             ERROR("Service %s does not have a SELinux domain defined.\n", name_.c_str());
+             if (selinux_status_getenforce() > 0) {
+@@ -379,6 +380,7 @@ bool Service::Start() {
+                 return false;
+             }
+         }
++#endif
+         free(mycon);
+         free(fcon);
+         if (rc < 0) {
+-- 
+2.30.2
+

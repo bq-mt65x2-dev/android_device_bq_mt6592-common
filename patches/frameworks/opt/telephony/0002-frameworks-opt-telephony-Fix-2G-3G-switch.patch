@@ -1,0 +1,66 @@
+From 96c9dcc9e0af1aa0c2adaaec2abd661283c5bbae Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 16:11:52 +0200
+Subject: [PATCH] frameworks: opt: telephony: Fix 2G/3G switch
+
+Change-Id: I2fdad5f932c2a0c89a7d3675cfc631f3c257ba07
+---
+ .../com/android/internal/telephony/Phone.java | 41 ++++++++++++-------
+ 1 file changed, 26 insertions(+), 15 deletions(-)
+
+diff --git a/src/java/com/android/internal/telephony/Phone.java b/src/java/com/android/internal/telephony/Phone.java
+index 772aa39..e041b5b 100644
+--- a/src/java/com/android/internal/telephony/Phone.java
++++ b/src/java/com/android/internal/telephony/Phone.java
+@@ -1856,22 +1856,33 @@ public abstract class Phone extends Handler implements PhoneInternalInterface {
+         int modemRaf = getRadioAccessFamily();
+         int rafFromType = RadioAccessFamily.getRafFromNetworkType(networkType);
+ 
+-        if (modemRaf == RadioAccessFamily.RAF_UNKNOWN
+-                || rafFromType == RadioAccessFamily.RAF_UNKNOWN) {
+-            Rlog.d(LOG_TAG, "setPreferredNetworkType: Abort, unknown RAF: "
+-                    + modemRaf + " " + rafFromType);
+-            if (response != null) {
+-                CommandException ex;
+-
+-                ex = new CommandException(CommandException.Error.GENERIC_FAILURE);
+-                AsyncResult.forMessage(response, null, ex);
+-                response.sendToTarget();
+-            }
+-            return;
+-        }
++        int filteredType = 0;
+ 
+-        int filteredRaf = (rafFromType & modemRaf);
+-        int filteredType = RadioAccessFamily.getNetworkTypeFromRaf(filteredRaf);
++        switch (rafFromType) {
++        case 101902:
++                filteredType = RILConstants.NETWORK_MODE_WCDMA_PREF;
++                break;
++        case 65542:
++                filteredType = RILConstants.NETWORK_MODE_GSM_ONLY;
++                break;
++        case 36360:
++                filteredType = RILConstants.NETWORK_MODE_WCDMA_ONLY;
++                break;
++        default:
++                if ((modemRaf == RadioAccessFamily.RAF_UNKNOWN
++                        || rafFromType == RadioAccessFamily.RAF_UNKNOWN)) {
++                        Rlog.d(LOG_TAG, "setPreferredNetworkType: Abort, unknown RAF: " +
++                         modemRaf + " " + rafFromType);
++                        if (response != null) {
++                            CommandException ex;
++
++                                ex = new CommandException(CommandException.Error.GENERIC_FAILURE);
++                                AsyncResult.forMessage(response, null, ex);
++                                response.sendToTarget();
++                        }
++                        return;
++                }
++        }
+ 
+         Rlog.d(LOG_TAG, "setPreferredNetworkType: networkType = " + networkType
+                 + " modemRaf = " + modemRaf
+-- 
+2.30.2
+

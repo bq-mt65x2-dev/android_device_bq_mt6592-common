@@ -1,0 +1,51 @@
+From 1a42039809c8051983d1851b1ea8182ca53b582b Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 15:29:47 +0200
+Subject: [PATCH] frameworks: av: MediaTek: Fix Microphone
+
+Change-Id: I65faed89cc381060bec16e7c26c10ec2f086aa13
+---
+ services/audioflinger/Android.mk  | 4 ++++
+ services/audioflinger/Threads.cpp | 4 ++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/services/audioflinger/Android.mk b/services/audioflinger/Android.mk
+index 8864215..da0e4e8 100644
+--- a/services/audioflinger/Android.mk
++++ b/services/audioflinger/Android.mk
+@@ -87,6 +87,10 @@ endif
+ endif
+ #QTI Resampler
+ 
++ifeq ($(BOARD_USES_MTK_HARDWARE),true)
++LOCAL_CFLAGS += -DLEGACY_AUDIO_BLOB
++endif
++
+ LOCAL_MODULE:= libaudioflinger
+ 
+ LOCAL_SRC_FILES += \
+diff --git a/services/audioflinger/Threads.cpp b/services/audioflinger/Threads.cpp
+index 5c37263..6878701 100644
+--- a/services/audioflinger/Threads.cpp
++++ b/services/audioflinger/Threads.cpp
+@@ -6464,7 +6464,7 @@ reacquire_wakelock:
+         // systemTime() is optional if the hardware supports timestamps.
+         mTimestamp.mPosition[ExtendedTimestamp::LOCATION_SERVER] += framesRead;
+         mTimestamp.mTimeNs[ExtendedTimestamp::LOCATION_SERVER] = systemTime();
+-
++#ifndef LEGACY_AUDIO_BLOB
+         // Update server timestamp with kernel stats
+         if (mInput->stream->get_capture_position != nullptr
+                 && mPipeSource.get() == nullptr /* don't obtain for FastCapture, could block */) {
+@@ -6482,7 +6482,7 @@ reacquire_wakelock:
+         }
+         // Use this to track timestamp information
+         // ALOGD("%s", mTimestamp.toString().c_str());
+-
++#endif
+         if (framesRead < 0 || (framesRead == 0 && mPipeSource == 0)) {
+             ALOGE("read failed: framesRead=%zd", framesRead);
+             // Force input into standby so that it tries to recover at next read attempt
+-- 
+2.30.2
+

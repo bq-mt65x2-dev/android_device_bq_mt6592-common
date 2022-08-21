@@ -1,0 +1,73 @@
+From a6eb8bf53ff40b07efad3781b51b44bcd2404993 Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 16:26:37 +0200
+Subject: [PATCH] frameworks: base: Fixes for NetdConnector
+
+Change-Id: Id237b9fe8a5afb653ba677908b4141f0c205173d
+---
+ .../android/server/NativeDaemonConnector.java   | 17 +++++++++++++----
+ .../server/NetworkManagementService.java        |  2 +-
+ 2 files changed, 14 insertions(+), 5 deletions(-)
+
+diff --git a/services/core/java/com/android/server/NativeDaemonConnector.java b/services/core/java/com/android/server/NativeDaemonConnector.java
+index f5f77321..cc1aedc4 100644
+--- a/services/core/java/com/android/server/NativeDaemonConnector.java
++++ b/services/core/java/com/android/server/NativeDaemonConnector.java
+@@ -73,7 +73,7 @@ final class NativeDaemonConnector implements Runnable, Handler.Callback, Watchdo
+     private AtomicInteger mSequenceNumber;
+ 
+     private static final long DEFAULT_TIMEOUT = 1 * 60 * 1000; /* 1 minute */
+-    private static final long WARN_EXECUTE_DELAY_MS = 500; /* .5 sec */
++    private static final long WARN_EXECUTE_DELAY_MS = 5500; /* 5.5 sec */
+ 
+     /** Lock held whenever communicating with native daemon. */
+     private final Object mDaemonLock = new Object();
+@@ -131,12 +131,22 @@ final class NativeDaemonConnector implements Runnable, Handler.Callback, Watchdo
+     public void run() {
+         mCallbackHandler = new Handler(mLooper, this);
+ 
++        long startTime = 0;
+         while (true) {
+             try {
+                 listenToSocket();
+             } catch (Exception e) {
+-                loge("Error in NativeDaemonConnector: " + e);
+-                SystemClock.sleep(5000);
++                long currentTime = SystemClock.uptimeMillis();
++                long elapsedTime = currentTime - startTime;
++
++                if (elapsedTime >= 5000 && startTime > 0) {
++                    startTime = 0;
++                }
++
++                if (startTime == 0)
++                    startTime = currentTime;
++
++                SystemClock.sleep(100);
+             }
+         }
+     }
+@@ -267,7 +277,6 @@ final class NativeDaemonConnector implements Runnable, Handler.Callback, Watchdo
+                 }
+             }
+         } catch (IOException ex) {
+-            loge("Communications error: " + ex);
+             throw ex;
+         } finally {
+             synchronized (mDaemonLock) {
+diff --git a/services/core/java/com/android/server/NetworkManagementService.java b/services/core/java/com/android/server/NetworkManagementService.java
+index 4748858f..98611473 100644
+--- a/services/core/java/com/android/server/NetworkManagementService.java
++++ b/services/core/java/com/android/server/NetworkManagementService.java
+@@ -940,7 +940,7 @@ public class NetworkManagementService extends INetworkManagementService.Stub
+                         timestampNanos = SystemClock.elapsedRealtimeNanos();
+                     }
+                     boolean isActive = cooked[2].equals("active");
+-                    notifyInterfaceClassActivity(Integer.parseInt(cooked[3]),
++                    notifyInterfaceClassActivity(cooked[3] == null ? 0 : Integer.parseInt(cooked[3]),
+                             isActive ? DataConnectionRealTimeInfo.DC_POWER_STATE_HIGH
+                             : DataConnectionRealTimeInfo.DC_POWER_STATE_LOW,
+                             timestampNanos, processUid, false);
+-- 
+2.30.2
+

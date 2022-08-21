@@ -1,0 +1,31 @@
+From e98631cae33c28969ac0c2ce1918050c4b6ecc6a Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 16:14:17 +0200
+Subject: [PATCH] frameworks: opt: telephony: Fix USSD
+
+Change-Id: I6794e743ac213369d537fa70e27933fd832a7874
+---
+ src/java/com/android/internal/telephony/GsmCdmaPhone.java | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/src/java/com/android/internal/telephony/GsmCdmaPhone.java b/src/java/com/android/internal/telephony/GsmCdmaPhone.java
+index c9a1c7e..bb24fcc 100644
+--- a/src/java/com/android/internal/telephony/GsmCdmaPhone.java
++++ b/src/java/com/android/internal/telephony/GsmCdmaPhone.java
+@@ -1998,7 +1998,12 @@ public class GsmCdmaPhone extends Phone {
+             // Complete pending USSD
+ 
+             if (isUssdRelease) {
+-                found.onUssdRelease();
++                // MTK weirdness
++                if(ussdMessage != null) {
++                    found.onUssdFinished(ussdMessage, isUssdRequest);
++                } else {
++                    found.onUssdRelease();
++                }
+             } else if (isUssdError) {
+                 found.onUssdFinishedError();
+             } else {
+-- 
+2.30.2
+

@@ -1,0 +1,99 @@
+From a17d88d7a4c6e6e76f373f04cc951eb830db7145 Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 20:41:24 +0200
+Subject: [PATCH] external: icu: Fix GPS for MTK devices
+
+Change-Id: Ibba6407f8d916982b73128b3d2a752dc32d87b51
+---
+ icu4c/source/common/ucnv_err.c | 75 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
+
+diff --git a/icu4c/source/common/ucnv_err.c b/icu4c/source/common/ucnv_err.c
+index 0fb14f0..78bba5a 100644
+--- a/icu4c/source/common/ucnv_err.c
++++ b/icu4c/source/common/ucnv_err.c
+@@ -94,6 +94,81 @@
+     )
+ 
+ 
++
++#include "unicode/ucnv.h"
++
++U_STABLE UConverter* U_EXPORT2
++ucnv_open_55(const char *converterName, UErrorCode *err)
++{
++    return ucnv_open(converterName, err);
++}
++
++U_STABLE void  U_EXPORT2
++ucnv_close_55(UConverter * converter)
++{
++    return ucnv_close(converter);
++}
++
++U_STABLE void U_EXPORT2 UCNV_TO_U_CALLBACK_STOP_55(
++                  const void *context,
++                  UConverterToUnicodeArgs *toUArgs,
++                  const char* codeUnits,
++                  int32_t length,
++                  UConverterCallbackReason reason,
++                  UErrorCode * err)
++{
++    UCNV_TO_U_CALLBACK_STOP(context, toUArgs, codeUnits, length, reason, err);
++}
++
++U_STABLE void U_EXPORT2 UCNV_FROM_U_CALLBACK_STOP_55(
++                  const void *context,
++                  UConverterFromUnicodeArgs *fromUArgs,
++                  const UChar* codeUnits,
++                  int32_t length,
++                  UChar32 codePoint,
++                  UConverterCallbackReason reason,
++                  UErrorCode * err)
++{
++    UCNV_FROM_U_CALLBACK_STOP (context, fromUArgs, codeUnits, length, codePoint, reason, err);
++}
++
++U_STABLE void U_EXPORT2
++ucnv_setToUCallBack_55(UConverter * converter,
++                     UConverterToUCallback newAction,
++                     const void* newContext,
++                     UConverterToUCallback *oldAction,
++                     const void** oldContext,
++                     UErrorCode * err)
++{
++    ucnv_setToUCallBack(converter, newAction, newContext, oldAction, oldContext, err);
++}
++
++U_STABLE void U_EXPORT2
++ucnv_setFromUCallBack_55(UConverter * converter,
++                       UConverterFromUCallback newAction,
++                       const void *newContext,
++                       UConverterFromUCallback *oldAction,
++                       const void **oldContext,
++                       UErrorCode * err)
++{
++    ucnv_setFromUCallBack(converter, newAction, newContext, oldAction, oldContext, err);
++}
++
++U_STABLE void U_EXPORT2
++ucnv_convertEx_55(UConverter *targetCnv, UConverter *sourceCnv,
++               char **target, const char *targetLimit,
++               const char **source, const char *sourceLimit,
++               UChar *pivotStart, UChar **pivotSource,
++               UChar **pivotTarget, const UChar *pivotLimit,
++               UBool reset, UBool flush,
++               UErrorCode *pErrorCode)
++{
++    ucnv_convertEx(targetCnv, sourceCnv, target, targetLimit, source, sourceLimit,
++                   pivotStart, pivotSource, pivotTarget, pivotLimit, reset, flush,
++                   pErrorCode);
++}
++
++
+ /*Function Pointer STOPS at the ILLEGAL_SEQUENCE */
+ U_CAPI void    U_EXPORT2
+ UCNV_FROM_U_CALLBACK_STOP (
+-- 
+2.30.2
+

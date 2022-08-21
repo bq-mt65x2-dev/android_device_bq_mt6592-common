@@ -1,0 +1,26 @@
+From bd46e5081a138907ef46059e602380a24a33bc6c Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sun, 21 Aug 2022 16:22:21 +0200
+Subject: [PATCH] frameworks: base: Fix Camera
+
+Change-Id: If373f37a15925c892a9d0c0871bbd8bb5afb882a
+---
+ .../android/hardware/camera2/legacy/RequestThreadManager.java   | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/core/java/android/hardware/camera2/legacy/RequestThreadManager.java b/core/java/android/hardware/camera2/legacy/RequestThreadManager.java
+index da62f544..ccd76571 100644
+--- a/core/java/android/hardware/camera2/legacy/RequestThreadManager.java
++++ b/core/java/android/hardware/camera2/legacy/RequestThreadManager.java
+@@ -242,6 +242,8 @@ public class RequestThreadManager {
+                     }
+                 } catch (LegacyExceptionUtils.BufferQueueAbandonedException e) {
+                     Log.w(TAG, "Surface abandoned, dropping frame. ", e);
++		} catch (IllegalArgumentException e) {
++                    Log.w(TAG, "no valid native surface, dropping frame. ", e);
+                 }
+             }
+ 
+-- 
+2.30.2
+
