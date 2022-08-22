@@ -185,7 +185,8 @@ PRODUCT_PACKAGES += \
     libshim_icuuc \
     libshim_vtmal \
     libshim_skia \
-    libshim_crypto
+    libshim_crypto \
+    libshim_camera
 
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise

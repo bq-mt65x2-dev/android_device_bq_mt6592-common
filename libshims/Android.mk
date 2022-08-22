@@ -46,3 +46,9 @@ LOCAL_SRC_FILES := libshim_crypto.cpp
 LOCAL_SHARED_LIBRARIES := libssl libcrypto
 LOCAL_MODULE := libshim_crypto
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_camera.cpp
+LOCAL_SHARED_LIBRARIES := libcamera_client libandroid_runtime libbinder
+LOCAL_MODULE := libshim_camera
+include $(BUILD_SHARED_LIBRARY)
