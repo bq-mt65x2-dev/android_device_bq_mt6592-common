@@ -8,7 +8,8 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := libshim_stagefright.cpp
-LOCAL_SHARED_LIBRARIES := libstagefright libstagefright_foundation libmedia
+LOCAL_SHARED_LIBRARIES := libstagefright libstagefright_foundation libmedia libutils libbinder libpowermanager liblog
+LOCAL_SRC_FILES += TimedEventQueue/TimedEventQueue.cpp
 LOCAL_MODULE := libshim_stagefright
 include $(BUILD_SHARED_LIBRARY)
 
