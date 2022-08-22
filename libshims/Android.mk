@@ -40,3 +40,9 @@ LOCAL_SRC_FILES := libshim_skia.cpp
 LOCAL_SHARED_LIBRARIES := libskia libandroid_runtime
 LOCAL_MODULE := libshim_skia
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_crypto.cpp
+LOCAL_SHARED_LIBRARIES := libssl libcrypto
+LOCAL_MODULE := libshim_crypto
+include $(BUILD_SHARED_LIBRARY)
