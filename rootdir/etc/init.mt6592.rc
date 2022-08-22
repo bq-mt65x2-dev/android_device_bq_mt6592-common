@@ -125,11 +125,11 @@ on post-fs-data
     chown system system /dev/ttyMT2
 
     # I2C
-    chmod 770 /dev/i2c_smartpa
+    chmod 0666 /dev/i2c_smartpa
     chown system system /dev/i2c_smartpa
-    chmod 770 /dev/i2c_smartpa_r
+    chmod 0666 /dev/i2c_smartpa_r
     chown system system /dev/i2c_smartpa_r
-    chmod 0770 /dev/i2c_tfa9887L
+    chmod 0666 /dev/i2c_tfa9887L
     chown system system /dev/i2c_tfa9887L
     
     # Create char device file for WMT, GPS, BT, FM, WIFI
