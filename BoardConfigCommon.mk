@@ -75,6 +75,9 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 # OTA
 BLOCK_BASED_OTA := true
 
+# Power
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/platform/mtk-tpd/control_double_tap"
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.mt6592
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
