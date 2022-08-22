@@ -52,3 +52,9 @@ LOCAL_SRC_FILES := libshim_camera.cpp
 LOCAL_SHARED_LIBRARIES := libcamera_client libandroid_runtime libbinder
 LOCAL_MODULE := libshim_camera
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_binder.cpp
+LOCAL_SHARED_LIBRARIES := libcutils libutils libbinder
+LOCAL_MODULE := libshim_binder
+include $(BUILD_SHARED_LIBRARY)
