@@ -61,6 +61,9 @@ USE_MINIKIN := true
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
+# Malloc
+MALLOC_SVELTE := true
+
 # MTK Header
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/mkbootimg.mk
