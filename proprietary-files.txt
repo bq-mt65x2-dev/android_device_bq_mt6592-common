@@ -53,8 +53,12 @@ vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/drm/libdrmwvmplugin.so
 
-# Crypto
-lib/libssladp.so
+# GPS
+lib/hw/gps.default.so:lib/hw/gps.mt6592.so|9e4bf9af46d4bfb93195f04d86c1df0eb1b46ed2
+bin/mtk_agpsd|318720aabff03c2f65ddbfc972c0d4d05babc11b
+lib/libmnl.so|bf4f292a5f5faf3fee2f50369dca1e892df1d7c1
+lib/libssladp.so|f25189a2b59c6f70025cff51fb847b4a59f5c21f
+xbin/mnld|90f1757a16383d4946308403e9a9761f70fb199b
 
 # Display
 lib/hw/gralloc.mt6592.so
@@ -315,12 +319,6 @@ lib/mtk-ril.so
 lib/mtk-rilmd2.so
 lib/libvtmal.so
 lib/libvt_custom.so
-
-# GPS
-lib/hw/gps.default.so:lib/hw/gps.mt6592.so
-bin/mtk_agpsd
-lib/libmnl.so
-xbin/mnld
 
 # NVRAM
 bin/nvram_agent_binder
