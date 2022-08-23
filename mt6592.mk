@@ -202,9 +202,6 @@ PRODUCT_PACKAGES += \
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-# Call dalvik heap config
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-
 # Call hwui memory config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
