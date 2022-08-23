@@ -204,6 +204,3 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Call hwui memory config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
-
-# Vendor
-$(call inherit-product-if-exists, vendor/bq/mt6592-common/mt6592-common-vendor.mk)
