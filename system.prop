@@ -8,6 +8,9 @@ debug.hwui.render_dirty_regions=false
 # Display
 ro.opengles.version=131072
 
+# FM Radio
+fmradio.driver.enable=1
+
 # Hardware
 ro.hardware=mt6592
 
