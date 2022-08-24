@@ -130,8 +130,6 @@
 	
     <!-- enable doze powersaving mode -->
     <bool name="config_enableAutoPowerModes">true</bool>
-    
-    <integer name="config_deviceHardwareKeys">19</integer>
 
     <!-- Ambient display -->
     <integer name="config_screenBrightnessDoze">30</integer>
