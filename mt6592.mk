@@ -80,6 +80,7 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
+    gps.$(TARGET_BOARD_PLATFORM) \
     libcurl
 
 PRODUCT_COPY_FILES += \
