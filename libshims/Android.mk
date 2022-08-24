@@ -58,3 +58,9 @@ LOCAL_SRC_FILES := libshim_binder.cpp
 LOCAL_SHARED_LIBRARIES := libcutils libutils libbinder
 LOCAL_MODULE := libshim_binder
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_media.cpp
+LOCAL_SHARED_LIBRARIES := libmedia libcutils libutils libbinder
+LOCAL_MODULE := libshim_media
+include $(BUILD_SHARED_LIBRARY)

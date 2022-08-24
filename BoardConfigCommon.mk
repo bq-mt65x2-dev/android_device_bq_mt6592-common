@@ -96,7 +96,8 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/lib/libssl.so|libshim_crypto.so \
     /system/lib/libcrypto.so|libshim_crypto.so \
     /system/lib/libcamera_client.so|libshim_camera.so \
-    /system/lib/libbinder.so|libshim_binder.so
+    /system/lib/libbinder.so|libshim_binder.so \
+    /system/lib/libmedia.so|libshim_media.so
 
 # System Properties
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
