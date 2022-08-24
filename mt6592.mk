@@ -20,6 +20,9 @@ COMMON_PATH := device/bq/mt6592-common
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
+# Disable dex2oat debug
+USE_DEX2OAT_DEBUG := false
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(COMMON_PATH)/overlay
