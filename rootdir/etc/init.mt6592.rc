@@ -93,7 +93,7 @@ on post-fs-data
 	chown media_rw media_rw /data/media
 
     # Modem related device nodes
-    mkdir /data/nvram/md  2770 root nvram
+    mkdir /data/nvram/md  2770 root radio
 
     # Radio
     mkdir /dev/radio 0770 radio radio
@@ -490,7 +490,7 @@ on post-fs-data
     chmod 0666 /dev/uio0
 
     # SBCHK
-    mkdir /data/sec 0750 nvram system
+    mkdir /data/sec 0750 radio system
 
     # OTP
     chmod 0660 /proc/driver/otp
@@ -835,15 +835,15 @@ service netdiag /system/bin/netdiag
 
 service nvram_daemon /system/bin/nvram_daemon
     class main
-    user nvram
-    group nvram system
+    user system
+    group radio system
     oneshot
 
 service featured /system/bin/featured
     class core
-    user nvram
-    group nvram system
-    socket dfo stream 660 nvram system
+    user system
+    group radio system
+    socket dfo stream 660 radio system
 
 service atci_service /system/bin/atci_service 
     socket atci-service stream 660 radio system 
@@ -995,16 +995,16 @@ on property:service.pppoe_wlan0.enable=1
 
 service DMAgent /system/bin/dm_agent_binder
     user system
-    group system nvram cache
+    group system radio cache
 
 service PPLAgent /system/bin/ppl_agent
     user system
-    group system nvram cache
+    group system radio cache
 
 service bwc /system/bin/bwc
     class main
     user system
-    group audio camera graphics inet net_bt net_bt_admin net_bw_acct drmrpc media sdcard_r nvram ccci radio system
+    group audio camera graphics inet net_bt net_bt_admin net_bw_acct drmrpc media sdcard_r radio ccci radio system
  
 service matv /system/bin/matv
     class main
@@ -1036,7 +1036,7 @@ service mtkbt /system/bin/mtkbt
     socket bt.int.adp dgram 660 bluetooth net_bt
     socket bt.a2dp.stream dgram 660 bluetooth net_bt
     user bluetooth
-    group system net_bt bluetooth net_bt_admin sdcard_rw inet net_admin nvram net_raw vpn net_bt_stack media_rw sdcard_r
+    group system net_bt bluetooth net_bt_admin sdcard_rw inet net_admin radio net_raw vpn net_bt_stack media_rw sdcard_r
     oneshot
 
 service emd_daemon /system/bin/emd_daemon
@@ -1044,7 +1044,7 @@ service emd_daemon /system/bin/emd_daemon
     oneshot
 
 service sbchk /sbchk/sec_chk.sh
-    user nvram
+    user radio
     group system
     oneshot
 
@@ -1058,7 +1058,7 @@ service agpsd /system/bin/mtk_agpsd
 
 service mnld /system/xbin/mnld
     user gps
-    group nvram gps inet misc sdcard_rw sdcard_r media_rw
+    group radio gps inet misc sdcard_rw sdcard_r media_rw
     socket mnld stream 660 gps system
     disabled
 
@@ -1210,8 +1210,8 @@ on property:ro.build.type=userdebug
 
 service emsvr_user /system/bin/em_svr
     disabled
-    user nvram
-    group system nvram
+    user radio
+    group system radio
 
 service emsvr /system/bin/em_svr
     disabled
@@ -1222,7 +1222,7 @@ service afmsvr /system/bin/afm_server
 
 service NvRAMAgent /system/bin/nvram_agent_binder
     user system
-    group system nvram
+    group system radio
 
 service thermal_manager /system/bin/thermal_manager
     user root
