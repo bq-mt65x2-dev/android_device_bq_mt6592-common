@@ -130,5 +130,9 @@ WIFI_DRIVER_FW_PATH_STA := STA
 WIFI_DRIVER_FW_PATH_AP := AP
 WIFI_DRIVER_FW_PATH_P2P := P2P
 
+# Media Extractors
+BOARD_SECCOMP_POLICY := \
+    $(COMMON_PATH)/configs/seccomp-policy
+
 # Hack to build with prebuilt kernel
 $(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
