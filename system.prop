@@ -2,6 +2,9 @@
 ro.camera.sound.forced=0
 ro.audio.silent=0
 
+# Bluetooth
+ro.btstack=blueangel
+
 # Disable dirty region for Mali
 debug.hwui.render_dirty_regions=false
 
