@@ -64,3 +64,10 @@ LOCAL_SRC_FILES := libshim_media.cpp
 LOCAL_SHARED_LIBRARIES := libmedia libcutils libutils libbinder
 LOCAL_MODULE := libshim_media
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_omx.cpp
+LOCAL_SHARED_LIBRARIES := libstagefright libstagefright_omx libutils
+LOCAL_C_INCLUDES += $(TOP)/frameworks/av/media/libstagefright $(TOP)/frameworks/av/media/libstagefright/include $(TOP)/frameworks/native/include/media/hardware $(TOP)/frameworks/native/include/media/openmax
+LOCAL_MODULE := libshim_omx
+include $(BUILD_SHARED_LIBRARY)
