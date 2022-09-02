@@ -8,6 +8,9 @@
 
 #include <ui/GraphicBuffer.h>
 
+#include <media/IMediaSource.h>
+#include <media/stagefright/SurfaceUtils.h>
+
 using namespace android;
 
 // android::OMX::OnFillBufferDone(unsigned int, unsigned int, OMX_BUFFERHEADERTYPE*, int)
@@ -56,4 +59,17 @@ extern "C" void _ZN7android3OMX16invalidateNodeIDEj(android::BnOMX::node_id node
 // android::OMX::invalidateNodeID(void*)
 extern "C" void _ZN7android3OMX16invalidateNodeIDEPv(android::BnOMX::node_id node) {
     _ZN7android3OMX16invalidateNodeIDEj(node);
+}
+
+// android::SimpleDecodingSource::Create(android::sp<android::IMediaSource> const&, unsigned int, android::sp<ANativeWindow> const&, char const*)
+extern "C" void _ZN7android20SimpleDecodingSource6CreateERKNS_2spINS_12IMediaSourceEEEjRKNS1_I13ANativeWindowEEPKc(const sp<IMediaSource> &source, uint32_t flags, const sp<ANativeWindow> &nativeWindow, const char *desiredCodec);
+
+// android::OMXCodec::Create(android::sp<android::IOMX> const&, android::sp<android::MetaData> const&, bool, android::sp<android::MediaSource> const&, char const*, unsigned int, android::sp<ANativeWindow> const&)
+extern "C" void _ZN7android8OMXCodec6CreateERKNS_2spINS_4IOMXEEERKNS1_INS_8MetaDataEEEbRKNS1_INS_11MediaSourceEEEPKcjRKNS1_I13ANativeWindowEE(const sp<IOMX> &omx, const sp<MetaData> &meta, bool createEncoder, const sp<IMediaSource> &source, const char *matchComponentName, uint32_t flags, const sp<ANativeWindow> &nativeWindow) {
+    _ZN7android20SimpleDecodingSource6CreateERKNS_2spINS_12IMediaSourceEEEjRKNS1_I13ANativeWindowEEPKc(source, flags, nativeWindow, nullptr);
+}
+
+// android::MPEG4Writer::getMaxDurationUs()
+extern "C" int64_t _ZN7android11MPEG4Writer16getMaxDurationUsEv() {
+    return 0;
 }
