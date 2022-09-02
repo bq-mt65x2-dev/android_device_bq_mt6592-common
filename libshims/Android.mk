@@ -71,3 +71,10 @@ LOCAL_SHARED_LIBRARIES := libstagefright libstagefright_omx libutils
 LOCAL_C_INCLUDES += $(TOP)/frameworks/av/media/libstagefright $(TOP)/frameworks/av/media/libstagefright/include $(TOP)/frameworks/native/include/media/hardware $(TOP)/frameworks/native/include/media/openmax
 LOCAL_MODULE := libshim_omx
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_runtime.cpp
+LOCAL_SHARED_LIBRARIES := libandroid_runtime libskia
+LOCAL_C_INCLUDES += $(TOP)/external/skia/include/android $(TOP)/external/skia/include/codec $(TOP)/external/skia/include/core $(TOP)/frameworks/base/core/jni/android/graphics $(TOP)/frameworks/base/libs/hwui $(TOP)/libnativehelper/include/nativehelper
+LOCAL_MODULE := libshim_runtime
+include $(BUILD_SHARED_LIBRARY)

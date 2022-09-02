@@ -189,7 +189,8 @@ PRODUCT_PACKAGES += \
     libshim_camera \
     libshim_binder \
     libshim_media \
-    libshim_omx
+    libshim_omx \
+    libshim_runtime
 
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise
