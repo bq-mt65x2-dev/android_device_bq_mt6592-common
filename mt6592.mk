@@ -167,12 +167,6 @@ PRODUCT_PACKAGES += \
     init.xlog.rc \
     ueventd.mt6592.rc
 
-# Thermal
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/thermal/.ht120.mtc:system/etc/.tp/.ht120.mtc \
-    $(COMMON_PATH)/configs/thermal/thermal.conf:system/etc/.tp/thermal.conf \
-    $(COMMON_PATH)/configs/thermal/thermal.off.conf:system/etc/.tp/thermal.off.conf
-
 # WiFi
 PRODUCT_PACKAGES += \
     lib_driver_cmd_mt66xx \
