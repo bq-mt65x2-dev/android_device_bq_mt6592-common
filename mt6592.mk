@@ -207,6 +207,10 @@ PRODUCT_PACKAGES += \
     libshim_omx \
     libshim_runtime
 
+# ATV
+PRODUCT_PACKAGES += \
+    libatvwrapper
+
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise
 
