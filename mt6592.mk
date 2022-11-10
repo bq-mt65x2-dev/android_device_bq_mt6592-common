@@ -199,7 +199,8 @@ PRODUCT_PACKAGES += \
     libshim_binder \
     libshim_media \
     libshim_omx \
-    libshim_runtime
+    libshim_runtime \
+    libshim_mnld
 
 # ATV
 PRODUCT_PACKAGES += \
