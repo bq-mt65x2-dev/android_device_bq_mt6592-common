@@ -116,6 +116,9 @@ TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
 
+# Extended filesystem support
+TARGET_KERNEL_HAVE_EXFAT := true
+
 # Headers
 TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
 
