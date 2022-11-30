@@ -10,6 +10,7 @@ debug.hwui.render_dirty_regions=false
 
 # Display
 ro.opengles.version=131072
+debug.hwui.use_buffer_age=false
 
 # FM Radio
 fmradio.driver.enable=1
