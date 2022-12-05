@@ -79,6 +79,9 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 # OTA
 BLOCK_BASED_OTA := true
 
+# Partitions
+TARGET_USERIMAGES_USE_F2FS := true
+
 # Power
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/platform/mtk-tpd/control_double_tap"
 
