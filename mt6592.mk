@@ -89,7 +89,8 @@ PRODUCT_COPY_FILES += \
 # Graphics
 PRODUCT_PACKAGES += \
     memtrack.$(TARGET_BOARD_PLATFORM) \
-    libGLES_android
+    libGLES_android \
+    libstlport
 
 # Keylayout
 PRODUCT_COPY_FILES += \
