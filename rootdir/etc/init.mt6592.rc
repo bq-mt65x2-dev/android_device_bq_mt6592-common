@@ -61,15 +61,12 @@ on init
     mkdir /storage/sdcard 0555 root root
  
     # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
+    symlink /storage/sdcard /sdcard
+    symlink /storage/sdcard /mnt/sdcard
 
     # USB OTG
     mkdir /storage/usbotg 0700 root root
     mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
-
-    # By default, primary storage is physical
-    setprop ro.vold.primary_physical 1
 
 on fs
     # Mount
