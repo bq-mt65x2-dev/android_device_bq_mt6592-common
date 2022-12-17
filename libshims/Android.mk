@@ -31,8 +31,9 @@ LOCAL_MODULE := libshim_vtmal
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := libshim_ui.cpp
-LOCAL_SHARED_LIBRARIES := libui libgui
+LOCAL_SRC_FILES := libshim_ui.cpp ui/GraphicBuffer.cpp
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/ui/include/
+LOCAL_SHARED_LIBRARIES := libui libgui libutils libcutils
 LOCAL_MODULE := libshim_ui
 include $(BUILD_SHARED_LIBRARY)
 

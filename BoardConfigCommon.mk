@@ -114,7 +114,8 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/lib/libstagefright_omx.so|libshim_omx.so \
     /system/lib/libandroid_runtime.so|libshim_runtime.so \
     /system/lib/libatvctrlservice.so|libatvwrapper.so \
-    /system/lib/libmnl.so|libshim_mnld.so
+    /system/lib/libmnl.so|libshim_mnld.so \
+    /system/lib/libcam_utils.so|libshim_ui.so
 
 # System Properties
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
