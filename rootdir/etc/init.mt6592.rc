@@ -78,9 +78,6 @@ on fs
     # Swap
     swapon_all /fstab.mt6592
 
-    # Fuse
-    setprop ro.crypto.fuse_sdcard true
-
     # Resize
     exec /system/bin/ext4_resize
 
