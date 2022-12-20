@@ -1,5 +1,6 @@
 /dev/bootimg        /boot           emmc    defaults                                        defaults
 /dev/recovery       /recovery       emmc    defaults                                        defaults
+/dev/misc           /misc           emmc    defaults                                        defaults
 
 /emmc@cache         /cache          ext4    noatime,nosuid,nodev,noauto_da_alloc,discard	wait,check
 /emmc@usrdata       /data           ext4    noatime,nosuid,nodev,noauto_da_alloc,discard	wait,check
