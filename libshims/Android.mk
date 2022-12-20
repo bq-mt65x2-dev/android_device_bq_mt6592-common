@@ -7,6 +7,12 @@ LOCAL_MODULE := libshim_utils
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libshim_fakelog.cpp
+LOCAL_SHARED_LIBRARIES := liblog
+LOCAL_MODULE := libshim_fakelog
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
 LOCAL_SRC_FILES := libshim_stagefright.cpp
 LOCAL_SHARED_LIBRARIES := libstagefright libstagefright_foundation libmedia libutils libbinder libpowermanager liblog
 LOCAL_SRC_FILES += TimedEventQueue/TimedEventQueue.cpp

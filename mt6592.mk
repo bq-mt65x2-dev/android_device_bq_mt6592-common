@@ -202,7 +202,8 @@ PRODUCT_PACKAGES += \
     libshim_media \
     libshim_omx \
     libshim_runtime \
-    libshim_mnld
+    libshim_mnld \
+    libshim_fakelog
 
 # ATV
 PRODUCT_PACKAGES += \
