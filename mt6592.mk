@@ -210,7 +210,3 @@ PRODUCT_PACKAGES += \
 
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise
-
-# OTAs
-PRODUCT_PROPERTY_OVERRIDES += \
-    cm.updater.uri=https://raw.githubusercontent.com/bq-mt65x2-dev/OTA/master/lineageos_$(PRODUCT_DEVICE).json
