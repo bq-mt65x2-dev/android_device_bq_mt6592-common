@@ -166,7 +166,6 @@ PRODUCT_PACKAGES += \
     init.mt6592.rc \
     init.mt6592.usb.rc \
     init.recovery.mt6592.rc \
-    init.xlog.rc \
     ueventd.mt6592.rc
 
 # WiFi
