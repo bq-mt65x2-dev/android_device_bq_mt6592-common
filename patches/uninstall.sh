@@ -1,7 +1,7 @@
 #!/bin/sh
 
 rootdirectory="$PWD"
-dirs="external/icu external/wpa_supplicant_8 frameworks/av frameworks/base frameworks/opt/telephony packages/apps/Snap system/bt system/core system/netd"
+dirs="bionic external/icu external/wpa_supplicant_8 frameworks/av frameworks/base frameworks/opt/telephony packages/apps/Snap system/bt system/core system/netd"
 
 for dir in $dirs ; do
 	cd $rootdirectory
