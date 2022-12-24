@@ -73,11 +73,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcorkscrew
 
-# FM Radio
-PRODUCT_PACKAGES += \
-    FMRadio \
-    libfmjni
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.$(TARGET_BOARD_PLATFORM) \
