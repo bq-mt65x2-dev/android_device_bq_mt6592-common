@@ -1,0 +1,31 @@
+From bc7846bf7176ff575e771c119c0e187c96650839 Mon Sep 17 00:00:00 2001
+From: jmpfbmx <jmpf.bmx@gmail.com>
+Date: Sat, 31 Dec 2022 00:44:44 +0100
+Subject: [PATCH] librilutils: Add a build barrier rule
+
+ * MTK modified it so we need to use stock one.
+
+Signed-off-by: jmpfbmx <jmpf.bmx@gmail.com>
+Change-Id: If1f58a0a1d7cbcc27f0bb2759c34fe7d369a1052
+---
+ librilutils/Android.mk | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/librilutils/Android.mk b/librilutils/Android.mk
+index 455f9bc..ad09cbe 100644
+--- a/librilutils/Android.mk
++++ b/librilutils/Android.mk
+@@ -1,4 +1,5 @@
+ # Copyright 2013 The Android Open Source Project
++ifneq ($(BOARD_PROVIDES_LIBRILUTILS),true)
+ 
+ LOCAL_PATH:= $(call my-dir)
+ include $(CLEAR_VARS)
+@@ -52,3 +53,4 @@ LOCAL_SRC_FILES := proto/sap-api.proto
+ LOCAL_PROTOC_OPTIMIZE_TYPE := micro
+ 
+ include $(BUILD_STATIC_JAVA_LIBRARY)
++endif # BOARD_PROVIDES_LIBRILUTILS
+-- 
+2.17.1
+

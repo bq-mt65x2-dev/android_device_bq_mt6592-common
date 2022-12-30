@@ -4,7 +4,7 @@ echo $1
 rootdirectory="$PWD"
 # ---------------------------------
 
-dirs="bionic external/icu external/wpa_supplicant_8 frameworks/av frameworks/base frameworks/opt/telephony packages/apps/Snap system/bt system/core system/netd"
+dirs="bionic external/icu external/wpa_supplicant_8 frameworks/av frameworks/base frameworks/opt/telephony hardware/ril packages/apps/Snap system/bt system/core system/netd"
 
 # red + nocolor
 RED='\033[0;31m'
