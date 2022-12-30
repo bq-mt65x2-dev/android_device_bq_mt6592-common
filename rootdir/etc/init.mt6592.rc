@@ -855,8 +855,8 @@ service netdiag /system/bin/netdiag
 
 service nvram_daemon /system/bin/nvram_daemon
     class main
-    user system
-    group radio system
+    user root
+    group radio system root
     oneshot
 
 service featured /system/bin/featured
