@@ -107,6 +107,12 @@ on post-fs-data
     # Modem related device nodes
     mkdir /data/nvram/md  2770 root radio
 
+    # NVRAM
+    mkdir /data/nvram 0666 media system
+    mkdir /data/nvram/APCFG 0666 media system
+    mkdir /data/nvram/APCFG/APRDCL 0666 media system
+    mkdir /data/nvram/APCFG/APRDEB 0666 media system
+
     # Radio
     mkdir /dev/radio 0770 radio radio
 
