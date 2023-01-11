@@ -519,19 +519,19 @@ on post-fs-data
 service gsm0710muxd /system/bin/gsm0710muxd -s /dev/ttyC0 -f 512 -n 8 -m basic
     class core
     user root
-    group radio cache inet misc ccci
+    group radio cache inet misc
     disabled
 
 service gsm0710muxdmd2 /system/bin/gsm0710muxdmd2 -s /dev/ccci2_tty0 -f 512 -n 8 -m basic
     class core
     user root
-    group radio cache inet misc ccci
+    group radio cache inet misc
     disabled
 
 service muxreport-daemon /system/bin/muxreport
     class core
     user radio
-    group radio cache inet misc ccci
+    group radio cache inet misc
     disabled
     oneshot
 
@@ -548,7 +548,7 @@ service ril-daemon /system/bin/rild
     socket rild-mtk-modem stream 660 radio system
     socket rild-atci stream 660 root radio
     user root
-    group radio cache inet misc audio sdcard_r sdcard_rw log ccci system
+    group radio cache inet misc audio sdcard_r sdcard_rw log system
     disabled
 
 service ril-daemon-md2 /system/bin/rildmd2
@@ -562,7 +562,7 @@ service ril-daemon-md2 /system/bin/rildmd2
     socket rild-mtk-modem-md2 stream 660 radio system
     socket rild-atci-md2 stream 660 root radio
     user root
-    group radio cache inet misc audio sdcard_r sdcard_rw log ccci system
+    group radio cache inet misc audio sdcard_r sdcard_rw log system
     disabled
 
 service md_minilog_util /system/bin/md_minilog_util
@@ -596,7 +596,7 @@ service pppd /system/bin/pppd file /data/misc/ppp/ppp_options
 service terservice /system/bin/terservice
     class core
     user radio
-    group radio cache inet misc ccci
+    group radio cache inet misc
     oneshot
 
 on boot
@@ -1024,7 +1024,7 @@ service PPLAgent /system/bin/ppl_agent
 service bwc /system/bin/bwc
     class main
     user system
-    group audio camera graphics inet net_bt net_bt_admin net_bw_acct drmrpc media sdcard_r radio ccci radio system
+    group audio camera graphics inet net_bt net_bt_admin net_bw_acct drmrpc media sdcard_r radio radio system
  
 service matv /system/bin/matv
     class main
@@ -1070,7 +1070,7 @@ service agpsd /system/bin/mtk_agpsd
     socket agpsd2 stream 660 gps system
     socket agpsd3 stream 660 gps system
     user gps
-    group gps ccci inet sdcard_r sdcard_rw misc
+    group gps radio inet sdcard_r sdcard_rw misc
 
 service mnld /system/xbin/mnld
     user gps
@@ -1081,7 +1081,7 @@ service mnld /system/xbin/mnld
 service extmdlogger /system/bin/extmdlogger
     class main
     user shell
-    group shell system radio sdcard_rw inet sdcard_r media_rw ccci
+    group shell system radio sdcard_rw inet sdcard_r media_rw
 
 service GoogleOtaAgent /system/bin/GoogleOtaBinder
     user system
@@ -1090,21 +1090,21 @@ service GoogleOtaAgent /system/bin/GoogleOtaBinder
 service mdlogger /system/bin/mdlogger
     class main
     user shell
-    group shell system radio sdcard_rw inet sdcard_r media_rw ccci
+    group shell system radio sdcard_rw inet sdcard_r media_rw
     disabled
     oneshot
 
 service dualmdlogger /system/bin/dualmdlogger
     class main
     user shell
-    group shell system radio sdcard_rw inet sdcard_r media_rw ccci
+    group shell system radio sdcard_rw inet sdcard_r media_rw
     disabled
     oneshot
 
 service emcsmdlogger /system/bin/emcsmdlogger
     class main
     user shell
-    group system shell radio sdcard_rw inet sdcard_r media_rw ccci
+    group system shell radio sdcard_rw inet sdcard_r media_rw
     disabled
     oneshot
 
