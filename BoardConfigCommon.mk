@@ -123,7 +123,8 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/lib/libcam_utils.so|libshim_ui.so \
     /system/lib/libMtkOmxVenc.so|libshim_ui.so \
     /system/lib/libaudio.primary.default.so|libshim_fakelog.so \
-    /system/lib/hw/hwcomposer.mt6592.so|libshim_fakelog.so
+    /system/lib/hw/hwcomposer.mt6592.so|libshim_fakelog.so \
+    /system/bin/mtk_agpsd|libshim_fakelog.so
 
 # System Properties
 TARGET_SYSTEM_PROP := $(COMMON_PATH)/system.prop
